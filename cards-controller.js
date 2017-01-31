@@ -6,13 +6,18 @@ function CardsController() {
 
   dataStore.getCharacters(ready)
 
-  this.onAdd = function () {
+  this.onAdd = function (charIndex) {
     //this function will take the player that was clicked and add them to your team through the dataStore.
-
+   
+dataStore.addToMyCharacters(charIndex);
+draw(dataStore.getMarvelCharacters(), dataStore.getMyCharacters());
   }
 
-  this.onRemove = function () {
+  this.onRemove = function (charIndex) {
     //this will remove the character from your team
+dataStore.removeMyCharacter(charIndex)
+draw(dataStore.getMarvelCharacters(), dataStore.getMyCharacters());
+
   }
 
   function ready(data) {
@@ -36,7 +41,7 @@ function CardsController() {
             <img src="${character.thumbnail.path}.${character.thumbnail.extension}" width="100">
             <h3>${character.name}</h3>
             <div>
-              <button class="btn-success" id="${character.id}">Add to Team</button>
+              <button class="btn-success" onclick="cardsCtrl.onAdd(${character.id})" id="${character.id}">Add to Team</button>
             </div>
           <div>
         `
@@ -49,7 +54,7 @@ function CardsController() {
             <img src="${character.thumbnail.path}.${character.thumbnail.extension}" width="100">
             <h3>${character.name}</h3>
             <div>
-              <button class="btn-danger" id="${character.id}">DESTROY FOREVER</button>
+              <button class="btn-danger" onclick="cardsCtrl.onRemove(${character.id})" id="${character.id}">DESTROY FOREVER</button>
             </div>
           <div>
           `
