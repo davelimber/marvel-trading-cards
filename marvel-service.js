@@ -29,7 +29,9 @@ function MarvelService() {
 debugger
     if (theCheck == false) {
       for (var i = 0; i < marvelCharacters.length; i++) {
-        if (marvelCharacters[i].id == id) {
+        console.log(marvelCharacters[i].id, 'all chars')
+        var charId = marvelCharacters[i].id;
+        if (charId == id) {
           myCharacters.push(marvelCharacters[i])
         }
       }
@@ -41,12 +43,10 @@ debugger
     debugger
     console.log(myCharacters);
     if (myCharacters.length != 0) {
-      for (var i = 0; i < myCharacters.length; i++) {
-        for (var x = 0; x < marvelCharacters.length; x++) {
-          console.log(myCharacters[i].id)
-          if (myCharacters[i].id == marvelCharacters[x].id) {
-            return true;
-          }
+      
+      for (i = 0; i < myCharacters.length; i++) {
+        if (myCharacters[i].id == id) {
+          return true;
         }
       }
     } return false;
